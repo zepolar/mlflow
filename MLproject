@@ -1,0 +1,12 @@
+name: flowml
+
+conda_env: conda.yaml
+
+entry_points:
+  main:
+    parameters:
+      C: {type: float, default: 1.0}
+      max_iter: {type: int, default: 200}
+      test_size: {type: float, default: 0.2}
+      random_state: {type: int, default: 42}
+    command: "python src/train.py --C {C} --max_iter {max_iter} --test_size {test_size} --random_state {random_state}"

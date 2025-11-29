@@ -1,0 +1,11 @@
+name: flowml-env
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - mlflow>=2.14.0
+      - scikit-learn>=1.3.0
+      - pandas>=2.0.0
+      - numpy>=1.25.0
