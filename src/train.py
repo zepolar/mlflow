@@ -63,7 +63,7 @@ def main():
     mlflow.set_registry_uri("sqlite:///mlflow.db")
 
     # Define name of experiment
-    mlflow.set_experiment("wine-logic-regression")
+    mlflow.set_experiment("wine-lr")
 
     with mlflow.start_run():
         # Log parameters and some data stats
