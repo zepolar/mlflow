@@ -31,6 +31,10 @@ def load_data() -> tuple[pd.DataFrame, pd.Series, dict]:
     return X, y, class_map
 
 
+class ClassificationEvaluator:
+    pass
+
+
 def main():
     args = parse_args()
 
@@ -54,6 +58,10 @@ def main():
                 "clf",
                 LogisticRegression(C=args.C, max_iter=args.max_iter, random_state=args.random_state, multi_class="auto"),
             ),
+            (
+                "evaluator",
+                ClassificationEvaluator(),
+            )
         ]
     )
 
