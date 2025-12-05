@@ -37,6 +37,9 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
@@ -51,6 +54,8 @@ jobs:
           password: ${{ secrets.AZURE_CONTAINER_SECRET }}
 
       - name: Build and Publish Docker
+        env:
+          IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build . -t  ${{ secrets.AZURE_CONTAINER_URI }}/mlflow:$(date +%s)
-          docker push ${{ secrets.AZURE_CONTAINER_URI }}/mlflow:$(date +%s)
+          docker build -f Dockerfile -t ${{ secrets.AZURE_CONTAINER_URI }}/mlflow:${IMAGE_TAG} .
+          docker push ${{ secrets.AZURE_CONTAINER_URI }}/mlflow:${IMAGE_TAG}
